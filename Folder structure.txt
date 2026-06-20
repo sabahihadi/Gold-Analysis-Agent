@@ -1,0 +1,21 @@
+gold-analysis-agent/
+│
+├── app.py
+├── requirements.txt
+├── .env
+├── notebook/
+│   └── Gold_Analysis_Agent.ipynb
+│
+├── src/
+│   ├── market_data.py
+│   ├── news_fetcher.py
+│   ├── llm_engine.py
+│   ├── prompts.py
+│   └── agent.py
+│
+├── outputs/
+│   ├── charts/
+│   └── chat_history.json
+│
+└── presentation/
+    └── Gold_Analysis_Agent.pptx
