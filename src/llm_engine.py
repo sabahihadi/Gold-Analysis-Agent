@@ -1,7 +1,7 @@
 from openai import OpenAI
 import os
 
-from prompts import SYSTEM_PROMPT
+from src.prompts import SYSTEM_PROMPT
 
 
 client = OpenAI(

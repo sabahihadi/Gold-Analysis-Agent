@@ -1,6 +1,6 @@
-from market_data import get_gold_price
-from news_fetcher import get_gold_news
-from llm_engine import generate_response
+from src.market_data import get_gold_price
+from src.news_fetcher import get_gold_news
+from src.llm_engine import generate_response
 
 
 class GoldAnalysisAgent:
