@@ -9,6 +9,9 @@ class GoldAnalysisAgent:
 
         market_data = get_gold_price()
 
+        if "error" in market_data:
+            return f"Market data unavailable: {market_data['error']}"
+
         news = get_gold_news()
 
         answer = generate_response(
