@@ -1,11 +1,11 @@
 pandas
 numpy
 requests
-python-dotenv
 yfinance
 tavily-python
 openai
 streamlit
 plotly
 matplotlib
-google-generativeai
+google-genai
+python-dotenv
