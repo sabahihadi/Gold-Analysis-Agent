@@ -1,6 +1,7 @@
 gold-analysis-agent/
 │
 ├── app.py
+├── streamlit_app.py
 ├── requirements.txt
 ├── .env
 ├── notebook/
