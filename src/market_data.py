@@ -1,36 +1,44 @@
-import time
-import yfinance as yf
+import os
+import requests
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+API_KEY = os.getenv("ALPHA_VANTAGE_API_KEY")
 
 
-def get_gold_price(retries=3, delay=5):
+def get_gold_price():
 
-    for attempt in range(retries):
+    url = "https://www.alphavantage.co/query"
 
-        try:
-            gold = yf.Ticker("GC=F")
+    params = {
+        "function": "TIME_SERIES_DAILY",
+        "symbol": "XAUUSD",
+        "apikey": API_KEY
+    }
 
-            data = gold.history(period="5d")
+    response = requests.get(url, params=params, timeout=20)
 
-            if data.empty:
-                raise ValueError("No data returned.")
+    data = response.json()
 
-            current_price = float(data["Close"].iloc[-1])
-            previous_price = float(data["Close"].iloc[-2])
+    series = data["Time Series (Daily)"]
 
-            change = current_price - previous_price
-            change_percent = (change / previous_price) * 100
+    dates = list(series.keys())[:7]
 
-            return {
-                "price": round(current_price, 2),
-                "change": round(change, 2),
-                "change_percent": round(change_percent, 2)
-            }
+    prices = [
+        float(series[d]["4. close"])
+        for d in dates
+    ]
 
-        except Exception as e:
+    current_price = prices[0]
 
-            if attempt < retries - 1:
-                time.sleep(delay)
-            else:
-                return {
-                    "error": str(e)
-                }
+    weekly_change = (
+        (prices[0] - prices[-1]) / prices[-1]
+    ) * 100
+
+    return {
+        "current_price": current_price,
+        "weekly_prices": prices,
+        "weekly_change_percent": round(weekly_change, 2)
+    }
