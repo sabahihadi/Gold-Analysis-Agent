@@ -22,6 +22,7 @@ def generate_response(
     user_question: str,
     market_data: dict,
     news: list,
+    language: str = "en",
     max_retries: int = 4
 ) -> str:
     """
@@ -36,8 +37,15 @@ def generate_response(
         "news": news
     }
 
+    if language == "fa":
+        language_instruction = ("Answer ONLY in Persian.")
+    else:
+        language_instruction = ("Answer ONLY in English.")
+
     prompt = f"""
 {SYSTEM_PROMPT}
+
+{language_instruction}
 
 You are given structured JSON data:
 
@@ -85,7 +93,7 @@ News:
 
         try:
             response = client.models.generate_content(
-                model="gemini-2.5-flash-lite",
+                model="gemini-2.5-flash",
                 contents=prompt,
                 config={
                     "temperature": 0.3,
