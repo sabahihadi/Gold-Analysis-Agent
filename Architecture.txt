@@ -1,22 +1,99 @@
-کاربر
+User
   │
   ▼
-رابط کاربری (Notebook / Streamlit)
+Streamlit User Interface
+  │
+  ├── Chat Input
+  ├── Chat History
+  ├── Gold Price Chart
+  └── Language Selection (EN / FA)
   │
   ▼
 Gold Analysis Agent
   │
-  ├── دریافت قیمت لحظه‌ای طلا (Yahoo Finance)
+  ├── Market Data Module
+  │       ├── Alpha Vantage API
+  │       ├── Current Gold Price
+  │       ├── Weekly Trend
+  │       └── Historical Price Data
   │
-  ├── دریافت اخبار (Tavily / Finnhub)
+  ├── News Module
+  │       ├── Gold News
+  │       ├── Economic News
+  │       └── News Summarization
   │
-  ├── تحلیل شاخص‌های کلان اقتصادی
-  │      ├── DXY
-  │      ├── نرخ بهره فدرال رزرو
-  │      ├── CPI
-  │      └── تنش‌های ژئوپلیتیکی
+  ├── Language Detection Module
+  │       ├── English
+  │       └── Persian
   │
-  └── ارسال داده‌ها به LLM
-            │
-            ▼
-       تولید پاسخ نهایی
+  ├── Prompt Engineering Module
+  │       ├── System Prompt
+  │       ├── Market Context
+  │       └── News Context
+  │
+  ├── LLM Engine
+  │       ├── Gemini API
+  │       ├── Retry Logic
+  │       ├── Error Handling
+  │       └── Response Generation
+  │
+  └── Chat History Storage
+          └── chat_history.json
+                  │
+                  ▼
+          Final Gold Market Analysis
+                  │
+                  ├── Price Summary
+                  ├── Trend Analysis
+                  ├── News Impact Analysis
+                  ├── Risk Factors
+                  └── Market Outlook
+
+
+-------------------------------------------Architecture Diagram---------------------------------------
+
+                    ┌──────────────────────┐
+                    │        User          │
+                    └──────────┬───────────┘
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │  Streamlit Interface │
+                    │ • Chat UI            │
+                    │ • Gold Chart         │
+                    │ • History            │
+                    └──────────┬───────────┘
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │ Gold Analysis Agent  │
+                    └──────────┬───────────┘
+                               │
+        ┌──────────────────────┼──────────────────────┐
+        │                      │                      │
+        ▼                      ▼                      ▼
+┌───────────────┐    ┌────────────────┐    ┌────────────────┐
+│ Market Data   │    │ News Fetcher   │    │ Language Detect│
+│ Alpha Vantage │    │ Economic News  │    │ EN / FA        │
+└───────┬───────┘    └────────┬───────┘    └────────┬───────┘
+        │                     │                     │
+        └─────────────────────┼─────────────────────┘
+                              ▼
+                  ┌──────────────────────┐
+                  │   Prompt Builder     │
+                  └──────────┬───────────┘
+                             │
+                             ▼
+                  ┌──────────────────────┐
+                  │    Gemini LLM        │
+                  │ • Retry Logic        │
+                  │ • Error Handling     │
+                  └──────────┬───────────┘
+                             │
+                             ▼
+                  ┌──────────────────────┐
+                  │ Final Analysis       │
+                  │ • Trend              │
+                  │ • Risks              │
+                  │ • Outlook            │
+                  └──────────────────────┘
