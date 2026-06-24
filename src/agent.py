@@ -1,7 +1,7 @@
 from src.market_data import get_gold_price
 from src.news_fetcher import get_gold_news
 from src.llm_engine import generate_response
-
+from src.language import detect_language
 
 class GoldAnalysisAgent:
 
@@ -18,8 +18,11 @@ class GoldAnalysisAgent:
 
         news = get_gold_news()
 
+        lang = detect_language(question)
+       
         return generate_response(
             question,
             market_data,
-            news
+            news,
+            lang
         )
