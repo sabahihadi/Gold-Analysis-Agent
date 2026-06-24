@@ -9,6 +9,8 @@ gold-analysis-agent/
 │
 ├── src/
 │   ├── market_data.py
+│      ├── get_gold_price()
+│      └── get_gold_history()
 │   ├── news_fetcher.py
 │   ├── llm_engine.py
 │   ├── prompts.py
