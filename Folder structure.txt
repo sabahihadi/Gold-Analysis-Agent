@@ -4,8 +4,10 @@ gold-analysis-agent/
 ├── streamlit_app.py
 ├── requirements.txt
 ├── .env
-├── notebook/
-│   └── Gold_Analysis_Agent.ipynb
+├── .venv
+├── .gitignore
+├── LICENSE
+├── README.md
 │
 ├── src/
 │   ├── market_data.py
@@ -14,11 +16,19 @@ gold-analysis-agent/
 │   ├── news_fetcher.py
 │   ├── llm_engine.py
 │   ├── prompts.py
-│   └── agent.py
+│   ├── agent.py
+│   ├── chat_history.py
+│   └── language.py
 │
-├── outputs/
-│   ├── charts/
+├── data
 │   └── chat_history.json
+│
+├── Test_env.py
+├── Test_gemini.py
+├── Test_llm.py
+├── Test_market.py
+├── Test_news.py
+├── Test_yfinance.py
 │
 └── presentation/
     └── Gold_Analysis_Agent.pptx
